@@ -2,30 +2,34 @@
 #include <algorithm>
 #include <chrono>
 #include <random>
-/// creating stack using linkedlist
+
 using namespace std;
 
-// Define the node structure for the linked list
-struct Node {
-    int data;
-    Node* next;
-};
-
-// Define the Stack class using a linked list
 class Stack {
 private:
-    Node* top;
+    int* arr;
+    int top;
+    int capacity;
 
 public:
-    Stack() {
-        top = NULL;
+    Stack(int size) {
+        arr = new int[size];
+        capacity = size;
+        top = -1;
     }
 
-    void push(int value) {        // push to the values in the stack
-        Node* newNode = new Node;
-        newNode->data = value;
-        newNode->next = top;
-        top = newNode;
+    ~Stack() {
+        delete[] arr;
+    }
+
+    void Push(int value) {
+        if (isFull()) {
+            cout << "Stack Overflow " << value << endl;
+        }
+        else {
+            top++;
+            arr[top] = value;
+        }
     }
 
     void Pop() {
@@ -33,14 +37,16 @@ public:
             cout << "Stack Underflow" << endl;
         }
         else {
-            Node* temp = top;
-            top = top->next;
-            delete temp;
+            top--;
         }
     }
 
     bool isEmpty() {
-        return top == NULL;
+        return top == -1;
+    }
+
+    bool isFull() {
+        return top == capacity - 1;
     }
 
     int StackTop() {
@@ -49,7 +55,7 @@ public:
             return -1;
         }
         else {
-            return top->data;
+            return arr[top];
         }
     }
 
@@ -58,11 +64,9 @@ public:
             cout << "Stack is empty." << endl;
         }
         else {
-            Node* current = top;
             cout << "Stack elements: ";
-            while (current != NULL) {
-                cout << current->data << " ";
-                current = current->next;
+            for (int i = top; i >= 0; i--) {
+                cout << arr[i] << " ";
             }
             cout << endl;
         }
@@ -70,9 +74,11 @@ public:
 };
 
 int main() {
-    Stack NewStack;
-auto start = chrono::steady_clock::now();
-//for (int i=0;i<10;i++){
+    int size=1000;
+   // cout<<"give the size of the array";
+   // cin>>size;
+    Stack NewStack(size);
+    auto start = chrono::steady_clock::now();
     NewStack.push(8);
     NewStack.push(10);
     NewStack.push(5);
@@ -101,9 +107,16 @@ auto start = chrono::steady_clock::now();
 
     NewStack.Display();
 
-auto end = chrono::steady_clock::now();
+
+
+
+
+     auto end = chrono::steady_clock::now();
+
+
 
     auto diff = end - start;
     cout << "Execution time: " << chrono::duration <double, micro> (diff).count() << " microseconds" << endl;
+
     return 0;
 }
