@@ -43,7 +43,7 @@ void heapSort(int arr[], int n)
 for (int x=n-1;x>=0;x--){
       //max_number send to the end of the array
       swap(arr[0],arr[x]);
-      // use recursively heapify
+      // use recursively heapify.
       heapify(arr,x,0);
    }
 
