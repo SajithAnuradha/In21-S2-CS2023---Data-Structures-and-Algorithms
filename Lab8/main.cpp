@@ -9,6 +9,7 @@ void heapify(int arr[], int n, int root)
    int Max_value_index=root;
    int left=2*root +1;
    int right=2*root +2;
+  // checking whether the root is smaller than the child
    if (left <n && arr[Max_value_index]< arr[left]){
       Max_value_index=left;
 
@@ -16,6 +17,7 @@ void heapify(int arr[], int n, int root)
    if (right < n && arr[Max_value_index]<arr[right] ){
        Max_value_index=right;
    }
+// when root is smaller than the child , swap those
   if (Max_value_index!=root){
       swap(arr[Max_value_index],arr[root]);
 
