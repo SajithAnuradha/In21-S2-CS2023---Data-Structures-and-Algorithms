@@ -6,7 +6,7 @@
 #define max 6
 
 using namespace std;
-
+// get the average time using this
 void AverageTime (int sum){
   float average=sum/5;
     cout<<"AverageTime :"<< average<<endl;
@@ -21,7 +21,7 @@ void dijkstra(int G[max][max], int n, int startNode) {
     bool visited[max];
     int count, mindistance, nextNode, i, j;
 
-    // Creating cost matrix
+    // intialize the cost matrix
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
             if (G[i][j] == 0)
@@ -53,7 +53,7 @@ void dijkstra(int G[max][max], int n, int startNode) {
             }
         }
 
-        // Checking if a better path exists through nextNode
+        // Checking if a better path
         visited[nextNode] = true;
 
         for (i = 0; i < n; i++) {
