@@ -20,14 +20,16 @@ using namespace std;
 
  }
 void PrintGraph (int MSTarry[],int Graph[6][6]){
+    int Minimum_Cost=0;
 cout << "EDGE : Weight" << "\n";
   for (int i=1;i <6;i++){
         cout<<MSTarry[i]<<" : " << i << "    " <<Graph[i][MSTarry[i]]<<endl;
 
+       Minimum_Cost+=Graph[i][MSTarry[i]];
 
   }
 
-
+cout <<"Minimum_Cost : " << Minimum_Cost<<endl;
 
 }
 
@@ -39,6 +41,7 @@ cout << "EDGE : Weight" << "\n";
 
 // check whethere the vertex add or not
   bool MSTset[V];
+
 
 
   // intialize the wight and as a not add vertex
@@ -96,7 +99,7 @@ int main()
                         {1,0,5,0,4,0} };
 
     // Print the solution
-    primsAlogorithm (graph,6,3);
+    primsAlogorithm (graph,6,0);
 
     return 0;
 }
